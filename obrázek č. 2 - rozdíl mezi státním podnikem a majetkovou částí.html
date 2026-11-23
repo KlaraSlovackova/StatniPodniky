@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formy vlastnictví státu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2B2B2B;--body:#4F4F4F;--round-icon-size:clamp(64px,9vw,96px)}
+*{box-sizing:border-box}
+html,body,button,svg{font-family:'PT Sans',sans-serif}
+html,body{background:#fff}body{margin:0;color:var(--ink)}
+main{max-width:1280px;margin:auto;padding:24px 40px}
+.ownership-visual{display:grid;grid-template-columns:minmax(0,1fr) 150px 150px minmax(0,1fr);grid-template-areas:'state-text state-icon share-icon share-text';gap:32px;align-items:center;margin:24px 0;min-height:0}
+.ownership-button{--icon-color:#2EB3A1;--dot-color:#71C3B4;--connector-color:#C2E2DB;display:flex;flex-direction:column;align-items:center;gap:32px;padding:16px 4px;background:transparent;border:0;color:var(--ink);font-size:24px;font-weight:700;line-height:1.3;cursor:pointer;border-radius:12px;min-width:0;text-align:center}
+.ownership-button>span:last-child{display:block;min-height:2.6em;width:100%;transition:color .16s ease}
+.ownership-label-title{display:block;min-height:2.6em}
+.ownership-subtitle{display:block;margin-top:10px;min-height:7.5em;font-size:14px;line-height:1.5;font-weight:400;color:var(--body);text-align:center;overflow-wrap:break-word}
+.ownership-emphasis{color:var(--icon-color);font-weight:700}
+.ownership-state-button{grid-area:state-icon}
+.ownership-share-button{grid-area:share-icon;--icon-color:#AF1953;--dot-color:#BD4C6D;--connector-color:#EDD4D9}
+#state-enterprise-description{grid-area:state-text;--icon-color:#2EB3A1}
+#state-share-description{grid-area:share-text;--icon-color:#AF1953;--reveal-offset:6px}
+.ownership-button:focus-visible{outline:2px solid var(--icon-color);outline-offset:6px}
+.ownership-symbol{position:relative;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:138px;height:138px;border-radius:50%;background:var(--icon-color);color:#fff;border:0;box-shadow:none;transition:transform .18s ease,box-shadow .18s ease}
+.ownership-symbol::after{content:'';position:absolute;z-index:2;right:5px;top:7px;width:18px;height:18px;border-radius:50%;background:var(--dot-color);border:3px solid #fff;pointer-events:none}
+.ownership-symbol::before{content:'';position:absolute;z-index:2;left:50%;bottom:-31px;transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:var(--dot-color);border:3px solid #fff;pointer-events:none}
+.ownership-connector{position:absolute;z-index:1;left:50%;top:100%;transform:translateX(-50%);width:2px;height:24px;border-radius:2px;background:var(--connector-color);pointer-events:none}
+.ownership-symbol svg{position:relative;width:88px;height:88px;max-width:none;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ownership-symbol .icon-fill,.ownership-symbol .icon-solid{fill:none}
+.ownership-button:hover .ownership-symbol,.ownership-button.is-active .ownership-symbol{transform:translateY(-3px);box-shadow:0 5px 12px #2B2B2B26}
+.ownership-button:hover>span:last-child,.ownership-button.is-active>span:last-child{color:var(--icon-color)}
+.ownership-description{position:relative;visibility:hidden;opacity:0;min-width:0;padding:22px;background:transparent;border:0;border-radius:0;box-shadow:none;--reveal-offset:-6px}
+.ownership-description.is-visible{visibility:visible;opacity:1;animation:ownershipReveal .16s ease-out}
+.ownership-description h4{font-size:24px;line-height:1.25;letter-spacing:-.02em;margin:0 0 16px;color:var(--icon-color)}
+.ownership-description p{margin:0;font-size:17px;line-height:1.8;color:var(--body);text-align:justify;text-align-last:start;hyphens:auto;overflow-wrap:break-word}
+@keyframes ownershipReveal{from{opacity:0;transform:translateX(var(--reveal-offset))}to{opacity:1;transform:translateX(0)}}
+@media(max-width:1050px) and (min-width:801px){.ownership-visual{grid-template-columns:minmax(0,1fr) 120px 120px minmax(0,1fr);gap:20px}.ownership-symbol{width:110px;height:110px}.ownership-symbol svg{width:72px;height:72px}.ownership-button{font-size:21px}.ownership-description{padding:18px}}
+@media(max-width:800px){.ownership-visual{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:'state-icon share-icon' 'state-text share-text';gap:24px 32px;align-items:start}.ownership-button{justify-self:center;width:150px}.ownership-description{align-self:start}}
+@media(max-width:400px){.ownership-visual{gap:20px}.ownership-button{width:120px;font-size:20px}.ownership-symbol{width:110px;height:110px}.ownership-symbol svg{width:72px;height:72px}.ownership-description{padding:16px}.ownership-description h4{font-size:21px}.ownership-description p{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.ownership-symbol{transform:none!important}.ownership-description.is-visible{animation:none}}
+.ownership-symbol{width:var(--round-icon-size);height:var(--round-icon-size);flex-shrink:0}
+.ownership-symbol svg{width:64%;height:64%}
+</style></head><body><main>
+<section class="ownership-visual" aria-label="Formy vlastnictví státu">
+<button type="button" class="ownership-button ownership-state-button" aria-expanded="false" aria-controls="state-enterprise-description"><span class="ownership-symbol"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path class="icon-fill" d="M15 83V45l24-13v16l23-14v49Z"/><path class="icon-solid" d="M62 83V18h16l5 65Z"/><path d="M12 83h76M62 83V18h16l5 65M67 27h11M24 59h7m15 0h7M24 69h7m15 0h7"/><path d="M33 83V72h13v11M19 45l20-13M43 46l19-12"/></svg><span class="ownership-connector" aria-hidden="true"></span></span><span class="ownership-label"><span class="ownership-label-title">Státní podnik</span><small class="ownership-subtitle">Podnik, který <span class="ownership-emphasis">vlastní stát v plném rozsahu</span>.</small></span></button>
+<div id="state-enterprise-description" class="ownership-description" aria-hidden="true"><h4>Státní podnik</h4><p>Stát prostřednictvím státního podniku přímo hospodaří se svým majetkem a vykonává nad jeho činností rozsáhlou kontrolu. Podnik je samostatnou právnickou osobou, jehož zakladatelem je výhradně stát, zpravidla zastoupený příslušným ministerstvem. To ovlivňuje jeho vedení, zásadní rozhodování i hospodaření. Státní podniky slouží především k naplňování strategických, hospodářských a veřejných zájmů státu.</p></div>
+<button type="button" class="ownership-button ownership-share-button" aria-expanded="false" aria-controls="state-share-description"><span class="ownership-symbol"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path class="icon-fill" d="M44 15a33 33 0 1 0 33 33H44Z"/><path class="icon-solid" d="M54 10v28h28a28 28 0 0 0-28-28Z"/><path d="M44 15v33h33M54 10v28h28"/><circle cx="72" cy="75" r="16" fill="var(--icon-color)"/><path d="M65 75h14m-7-7v14"/></svg><span class="ownership-connector" aria-hidden="true"></span></span><span class="ownership-label"><span class="ownership-label-title">Majetková účast</span><small class="ownership-subtitle">Podíl státu v obchodní společnosti, která <span class="ownership-emphasis">může mít i další vlastníky</span>.</small></span></button>
+<div id="state-share-description" class="ownership-description" aria-hidden="true"><h4>Majetková účast</h4><p>Stát nevlastní přímo společnost ani její majetek, ale drží v ní obchodní podíl nebo akcie. Vystupuje jako společník či akcionář a svůj vliv uplatňuje prostřednictvím hlasovacích práv, valné hromady a obsazování členů orgánů společnosti. Společnost sama vlastní svůj majetek a stát z účasti získává ekonomický přínos zejména formou dividend. Majetkové účasti umožňují státu vedle ekonomického zhodnocování majetku prosazovat také strategické, hospodářské a veřejné zájmy.</p></div></section>
+</main><script>
+const ownershipVisual=document.querySelector('.ownership-visual'),ownershipButtons=[...ownershipVisual.querySelectorAll('.ownership-button')],ownershipDescriptions=ownershipButtons.map(button=>document.getElementById(button.getAttribute('aria-controls')));let ownershipActive=null,lastPointer='mouse';
+function showOwnership(active){ownershipActive=active;ownershipButtons.forEach((button,i)=>{const visible=i===active;button.classList.toggle('is-active',visible);button.setAttribute('aria-expanded',String(visible));ownershipDescriptions[i].classList.toggle('is-visible',visible);ownershipDescriptions[i].setAttribute('aria-hidden',String(!visible))})}
+ownershipButtons.forEach((button,i)=>{button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'||e.pointerType==='pen')showOwnership(i)});button.addEventListener('pointerleave',()=>{if(ownershipActive===i)showOwnership(null)});button.addEventListener('pointercancel',()=>showOwnership(null));button.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();ownershipButtons[1-i].focus()}});
+button.addEventListener('pointerdown',e=>{lastPointer=e.pointerType});
+button.addEventListener('click',()=>{if(lastPointer==='mouse'||lastPointer==='pen'){lastPointer='';return}showOwnership(ownershipActive===i?null:i)})});
+ownershipVisual.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'||e.pointerType==='pen')showOwnership(null)});
+document.addEventListener('pointerdown',e=>{if(!ownershipVisual.contains(e.target))showOwnership(null)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')showOwnership(null)});window.addEventListener('blur',()=>showOwnership(null));document.addEventListener('visibilitychange',()=>{if(document.hidden)showOwnership(null)});showOwnership(null);
+</script></body></html>

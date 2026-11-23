@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tři pilíře strategie vlastnické politiky státu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2B2B2B;--body:#4F4F4F;--muted:#737373;--line:#DCDCDC;--soft:#F0F0F0;--accent:#2EB3A1;--detail-height:650px;--paragraph-gap:24px}
+:root{--round-icon-size:clamp(64px,9vw,96px)}
+*{box-sizing:border-box}html,body,button,svg,text,tspan{font-family:'PT Sans',sans-serif}[hidden]{display:none!important}
+html,body{background:#fff}body{margin:0;color:var(--ink)}main{max-width:1280px;margin:auto;padding:24px 40px}
+.strategy-pillars{margin:48px 0 0;padding:0 0 20px}
+.strategy-pillars-heading{font-size:29px;line-height:1.3;letter-spacing:-.03em;color:var(--ink);text-align:center;margin:0 0 10px;font-weight:700}
+.strategy-pillars-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start;width:100%;max-width:932px;margin:0 auto}
+.strategy-pillar{--pillar-accent:#2EB3A1;--pillar-soft:#E2F1EE;--pillar-edge:#C2E2DB;--pillar-text:#285D58;position:relative;isolation:isolate;width:100%;max-width:300px;margin:0 auto;padding:26px 18px;border:0;border-radius:0;background:transparent;min-width:0;overflow:visible;transition:filter .18s ease}
+.strategy-pillar-yellow{--pillar-accent:#FDC300;--pillar-soft:#FFF3D8;--pillar-edge:#FFE7AC;--pillar-text:#765B00}
+.strategy-pillar-red{--pillar-accent:#AF1953;--pillar-soft:#EDD4D9;--pillar-edge:#CC7B8E;--pillar-text:#7D2344}
+.strategy-pillar::before,.strategy-pillar::after{content:'';position:absolute;left:0;right:0;height:18px;border-radius:4px;background:var(--pillar-accent);pointer-events:none}
+.strategy-pillar::before{top:0;box-shadow:0 8px 0 -4px var(--pillar-soft)}
+.strategy-pillar::after{bottom:0;box-shadow:0 -8px 0 -4px var(--pillar-soft)}
+.strategy-pillar:hover,.strategy-pillar.is-open{filter:drop-shadow(0 5px 7px #2B2B2B12)}
+.strategy-pillar-summary{position:relative;list-style:none;cursor:pointer;width:100%;font:inherit;color:inherit;border:0;padding:24px 24px 0;min-height:360px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;background:#fff;border-left:2px solid var(--pillar-edge);border-right:2px solid var(--pillar-edge)}
+.strategy-pillar-summary::before{content:'';position:absolute;left:-9px;right:-9px;top:-8px;height:8px;background:var(--pillar-soft);border:1px solid var(--pillar-edge);pointer-events:none}
+.strategy-pillar-summary:focus-visible{outline:3px solid var(--pillar-text);outline-offset:-6px}
+.strategy-pillar-summary > :not(.strategy-pillar-flutes){position:relative;z-index:1}
+.strategy-pillar-flutes{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.strategy-pillar-flutes::before,.strategy-pillar-flutes::after{content:'';position:absolute;top:84px;bottom:82px;width:1px;background:var(--pillar-accent);opacity:.23;border-radius:1px}
+.strategy-pillar-flutes::before{left:10px;box-shadow:6px 0 0 var(--pillar-accent)}
+.strategy-pillar-flutes::after{right:10px;box-shadow:-6px 0 0 var(--pillar-accent)}
+.strategy-pillar-number{align-self:center;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--pillar-accent);border-radius:50%;color:var(--pillar-text);font-size:18px;line-height:1;font-weight:700;background:#fff;flex-shrink:0}
+.strategy-pillar-icon{display:flex;align-items:center;justify-content:center;width:88px;height:88px;border-radius:50%;background:var(--pillar-accent);flex-shrink:0;position:relative}
+.strategy-pillar-icon::after{content:'';position:absolute;right:1px;top:2px;width:13px;height:13px;border:3px solid #fff;border-radius:50%;background:var(--pillar-soft)}
+.strategy-pillar-icon svg{width:56px;height:56px;max-width:none;margin:0;fill:none;stroke:#fff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.strategy-pillar-title{display:flex;align-items:center;justify-content:center;width:100%;min-height:2.6em;font-size:22px;font-weight:700;line-height:1.3;letter-spacing:-.02em;color:var(--ink);overflow-wrap:break-word}
+.strategy-pillar-action{display:flex;align-items:center;justify-content:space-between;gap:12px;width:calc(100% + 48px);margin:auto -24px 0;padding:16px 18px;background:var(--pillar-soft);color:var(--pillar-text);font-size:15px;line-height:1.4;font-weight:700;border-top:1px solid var(--pillar-edge)}
+.strategy-pillar-toggle{display:block;position:relative;width:24px;height:24px;flex-shrink:0;border:1px solid currentColor;border-radius:50%}
+.strategy-pillar-toggle::before,.strategy-pillar-toggle::after{content:'';position:absolute;left:6px;right:6px;top:10px;height:2px;background:currentColor;border-radius:1px}
+.strategy-pillar-toggle::after{transform:rotate(90deg);transition:transform .18s ease}
+.strategy-pillar.is-open .strategy-pillar-toggle::after{transform:rotate(0)}
+.strategy-pillar .pillar-open-label{display:none}
+.strategy-pillar.is-open .pillar-open-label{display:inline}
+.strategy-pillar.is-open .pillar-closed-label{display:none}
+.strategy-panels{max-width:1100px;margin:0 auto}
+.strategy-pillar-panel{--pillar-accent:#2EB3A1;--pillar-soft:#E2F1EE;--pillar-edge:#C2E2DB;--pillar-text:#285D58;width:100%;margin:28px auto 0;border:1px solid var(--pillar-edge);border-top:4px solid var(--pillar-accent);border-radius:12px;background:var(--pillar-soft);overflow:hidden;scroll-margin-top:90px;box-shadow:0 5px 18px #2B2B2B0A}
+.strategy-pillar-panel.strategy-panel-yellow{--pillar-accent:#FDC300;--pillar-soft:#FFF3D8;--pillar-edge:#FFE7AC;--pillar-text:#765B00}
+.strategy-pillar-panel.strategy-panel-red{--pillar-accent:#AF1953;--pillar-soft:#EDD4D9;--pillar-edge:#CC7B8E;--pillar-text:#7D2344}
+.strategy-panel-header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 28px;border-bottom:1px solid var(--pillar-edge)}
+.strategy-panel-identity{display:flex;align-items:center;gap:18px;min-width:0}
+.strategy-panel-number{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:50px;height:50px;background:#fff;color:var(--pillar-text);border:1px solid var(--pillar-accent);border-radius:50%;font-size:20px;font-weight:700}
+.strategy-panel-header h5{margin:0;color:var(--pillar-text);font-size:25px;font-weight:700;line-height:1.3;letter-spacing:-.02em}
+.strategy-panel-header p{margin:6px 0 0;color:var(--body);font-size:14px;line-height:1.5}
+.strategy-panel-back{flex-shrink:0;cursor:pointer;font:inherit;font-size:14px;line-height:1.4;border:1px solid var(--pillar-edge);border-radius:7px;background:#fff;color:var(--pillar-text);padding:10px 14px}
+.strategy-panel-back:hover{border-color:var(--pillar-accent)}
+.strategy-panel-back:focus-visible,.strategy-panel-scroll:focus-visible,.strategy-pillar-panel:focus-visible{outline:2px solid var(--pillar-text);outline-offset:-4px}
+.strategy-panel-scroll{padding:24px 28px;height:420px;min-height:420px;max-height:420px;overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:var(--pillar-accent) var(--pillar-soft);overscroll-behavior:contain}
+.strategy-panel-scroll::-webkit-scrollbar{width:8px}
+.strategy-panel-scroll::-webkit-scrollbar-track{background:var(--pillar-soft)}
+.strategy-panel-scroll::-webkit-scrollbar-thumb{background:var(--pillar-accent);border:2px solid var(--pillar-soft);border-radius:6px}
+.strategy-pillar-roles{list-style:none;margin:0;padding:0;color:var(--body);font-size:17px;line-height:1.7}
+.strategy-pillar-roles li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:18px;align-items:start;padding:16px 20px;margin:0 0 12px;background:#fff;border:1px solid var(--pillar-edge);border-radius:9px;overflow-wrap:break-word}
+.strategy-pillar-roles li:last-child{margin-bottom:0}
+.strategy-role-number{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--pillar-soft);color:var(--pillar-text);font-weight:700;font-size:15px;line-height:1}
+.strategy-role-text{padding-top:4px;text-align:left;hyphens:auto}
+@media(max-width:760px){.strategy-pillars-grid{grid-template-columns:1fr;gap:20px}.strategy-pillars{margin-top:36px}.strategy-pillars-heading{font-size:26px;margin-bottom:8px}.strategy-pillar{max-width:330px}.strategy-pillar-summary{min-height:340px;gap:18px}.strategy-panel-header{padding:20px 18px;align-items:flex-start;flex-direction:column;gap:16px}.strategy-panel-header h5{font-size:22px}.strategy-panel-scroll{padding:18px 14px}.strategy-pillar-roles li{padding:14px 12px;grid-template-columns:32px minmax(0,1fr);gap:12px}.strategy-role-number{width:30px;height:30px;font-size:13px}.strategy-role-text{padding-top:0}.strategy-panel-identity{gap:12px}}
+@media print{.strategy-pillars-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.strategy-pillar{break-inside:avoid;filter:none}.strategy-pillar-action,.strategy-panel-back{display:none}.strategy-pillar-panel[hidden]{display:block!important}.strategy-panel-scroll{height:auto;min-height:0;max-height:none;overflow:visible;scrollbar-gutter:auto}.strategy-pillar-panel{box-shadow:none}.strategy-pillar-roles li{break-inside:avoid}}
+.strategy-pillar-count{display:flex;align-items:baseline;justify-content:center;gap:6px;margin-top:-12px;color:var(--pillar-text);font-size:14px;line-height:1.5;flex-shrink:0}
+.strategy-pillar-count-number{font-size:22px;font-weight:700;line-height:1}
+.strategy-pillars-subtitle{margin:0 0 30px;color:var(--muted);font-size:17px;line-height:1.6;text-align:center;font-weight:400;overflow-wrap:break-word}
+@media(max-width:760px){.strategy-pillars-subtitle{font-size:16px;margin-bottom:24px}}
+.ownership-symbol,.strategy-pillar-icon,.company-type-icon{width:var(--round-icon-size);height:var(--round-icon-size);flex-shrink:0}
+.ownership-symbol svg,.strategy-pillar-icon svg,.company-type-icon svg{width:64%;height:64%}
+</style></head><body><main>
+<section class="strategy-pillars" aria-labelledby="strategy-pillars-title"><h4 id="strategy-pillars-title" class="strategy-pillars-heading">Tři pilíře strategie vlastnické politiky státu</h4><p class="strategy-pillars-subtitle">Základní informovanost o společnostech a státem vlastněných organizacích</p><div class="strategy-pillars-grid"><div class="strategy-pillar strategy-pillar-green" id="strategy-pillar-1">
+<button type="button" class="strategy-pillar-summary" id="strategy-pillar-button-1" aria-expanded="false" aria-controls="strategy-pillar-panel-1" aria-labelledby="strategy-pillar-title-1" aria-describedby="strategy-pillar-count-1"><span class="strategy-pillar-flutes" aria-hidden="true"></span>
+<span class="strategy-pillar-number" aria-label="1. pilíř">I.</span>
+<span class="strategy-pillar-icon"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M14 31L50 11L86 31H14ZM19 38H81M23 38V72M37 38V72M50 38V72M63 38V72M77 38V72M17 79H83M13 87H87"/></svg></span>
+<span class="strategy-pillar-title" id="strategy-pillar-title-1">Role státu jako vlastníka</span>
+<span class="strategy-pillar-count" id="strategy-pillar-count-1"><span class="strategy-pillar-count-number">4</span> <span>opatření</span></span>
+<span class="strategy-pillar-action" aria-hidden="true"><span class="pillar-closed-label">Zobrazit opatření</span><span class="pillar-open-label">Skrýt opatření</span><span class="strategy-pillar-toggle"></span></span>
+</button></div><div class="strategy-pillar strategy-pillar-yellow" id="strategy-pillar-2">
+<button type="button" class="strategy-pillar-summary" id="strategy-pillar-button-2" aria-expanded="false" aria-controls="strategy-pillar-panel-2" aria-labelledby="strategy-pillar-title-2" aria-describedby="strategy-pillar-count-2"><span class="strategy-pillar-flutes" aria-hidden="true"></span>
+<span class="strategy-pillar-number" aria-label="2. pilíř">II.</span>
+<span class="strategy-pillar-icon"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="25" r="10"/><circle cx="24" cy="37" r="8"/><circle cx="76" cy="37" r="8"/><path d="M33 78V63C33 52 40 47 50 47S67 52 67 63V78M10 78V66C10 56 16 51 24 51M90 78V66C90 56 84 51 76 51"/></svg></span>
+<span class="strategy-pillar-title" id="strategy-pillar-title-2">Corporate governance</span>
+<span class="strategy-pillar-count" id="strategy-pillar-count-2"><span class="strategy-pillar-count-number">15</span> <span>opatření</span></span>
+<span class="strategy-pillar-action" aria-hidden="true"><span class="pillar-closed-label">Zobrazit opatření</span><span class="pillar-open-label">Skrýt opatření</span><span class="strategy-pillar-toggle"></span></span>
+</button></div><div class="strategy-pillar strategy-pillar-red" id="strategy-pillar-3">
+<button type="button" class="strategy-pillar-summary" id="strategy-pillar-button-3" aria-expanded="false" aria-controls="strategy-pillar-panel-3" aria-labelledby="strategy-pillar-title-3" aria-describedby="strategy-pillar-count-3"><span class="strategy-pillar-flutes" aria-hidden="true"></span>
+<span class="strategy-pillar-number" aria-label="3. pilíř">III.</span>
+<span class="strategy-pillar-icon"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><rect x="41" y="11" width="18" height="18" rx="2"/><rect x="11" y="69" width="18" height="18" rx="2"/><rect x="41" y="69" width="18" height="18" rx="2"/><rect x="71" y="69" width="18" height="18" rx="2"/><path d="M50 29V49M20 69V49H80V69M50 49V69"/></svg></span>
+<span class="strategy-pillar-title" id="strategy-pillar-title-3">Institucionální rámec</span>
+<span class="strategy-pillar-count" id="strategy-pillar-count-3"><span class="strategy-pillar-count-number">2</span> <span>opatření</span></span>
+<span class="strategy-pillar-action" aria-hidden="true"><span class="pillar-closed-label">Zobrazit opatření</span><span class="pillar-open-label">Skrýt opatření</span><span class="strategy-pillar-toggle"></span></span>
+</button></div></div><div class="strategy-panels"><section class="strategy-pillar-panel strategy-panel-green" id="strategy-pillar-panel-1" aria-labelledby="strategy-panel-title-1" tabindex="-1" hidden>
+<div class="strategy-panel-header"><div class="strategy-panel-identity"><span class="strategy-panel-number" aria-hidden="true">I.</span><div><h5 id="strategy-panel-title-1">Role státu jako vlastníka</h5><p>4 role</p></div></div><button type="button" class="strategy-panel-back" data-pillar-back="1">← Zpět na pilíře</button></div>
+<div class="strategy-panel-scroll" tabindex="0" role="region" aria-labelledby="strategy-panel-title-1"><ol class="strategy-pillar-roles" start="1"><li><span class="strategy-role-number" aria-hidden="true">01</span><span class="strategy-role-text">Kategorizovat státní podniky a společnosti s majetkovou účastí státu podle jejich významu a pravidelně ověřovat, zda je jejich vlastnictví pro stát nadále potřebné.</span></li><li><span class="strategy-role-number" aria-hidden="true">02</span><span class="strategy-role-text">Jasné vymezení očekávaných přínosů jednotlivých společností a podniků a s nimi související výdaje ze státního rozpočtu.</span></li><li><span class="strategy-role-number" aria-hidden="true">03</span><span class="strategy-role-text">Posoudit nezbytnost a hospodárnost všech podpůrných státních podniků a společností s majetkovou účastí státu.</span></li><li><span class="strategy-role-number" aria-hidden="true">04</span><span class="strategy-role-text">Uplatňovat jednotná pravidla řízení a správy ve strategických státních podnicích a společnostech s majetkovou účastí státu.</span></li></ol></div>
+</section><section class="strategy-pillar-panel strategy-panel-yellow" id="strategy-pillar-panel-2" aria-labelledby="strategy-panel-title-2" tabindex="-1" hidden>
+<div class="strategy-panel-header"><div class="strategy-panel-identity"><span class="strategy-panel-number" aria-hidden="true">II.</span><div><h5 id="strategy-panel-title-2">Corporate governance</h5><p>15 rolí</p></div></div><button type="button" class="strategy-panel-back" data-pillar-back="2">← Zpět na pilíře</button></div>
+<div class="strategy-panel-scroll" tabindex="0" role="region" aria-labelledby="strategy-panel-title-2"><ol class="strategy-pillar-roles" start="5"><li><span class="strategy-role-number" aria-hidden="true">05</span><span class="strategy-role-text">Jednoznačně vymezit odpovědnosti a pravomoci orgánů státních podniků a společností s majetkovou účastí státu.</span></li><li><span class="strategy-role-number" aria-hidden="true">06</span><span class="strategy-role-text">Stanovení a pravidelné ověřování dlouhodobých cílů pro každý strategický státní podnik a společnost s majetkovou účastí státu.</span></li><li><span class="strategy-role-number" aria-hidden="true">07</span><span class="strategy-role-text">Zavedení jednotného systému reportingu a hodnocení výkonnosti.</span></li><li><span class="strategy-role-number" aria-hidden="true">08</span><span class="strategy-role-text">Definování požadavků na členy orgánů a vytváření kompetenčních profilů pro jednotlivé funkce.</span></li><li><span class="strategy-role-number" aria-hidden="true">09</span><span class="strategy-role-text">Optimalizace velikost řídicích a kontrolních orgánů.</span></li><li><span class="strategy-role-number" aria-hidden="true">10</span><span class="strategy-role-text">Zvyšování odbornosti členů orgánů.</span></li><li><span class="strategy-role-number" aria-hidden="true">11</span><span class="strategy-role-text">Posilování odbornosti zaměstnanců státu odpovědných za výkon vlastnických práv.</span></li><li><span class="strategy-role-number" aria-hidden="true">12</span><span class="strategy-role-text">Podpora diverzifikace ve vedení a kontrolních orgánech.</span></li><li><span class="strategy-role-number" aria-hidden="true">13</span><span class="strategy-role-text">Pravidelná kontrola smluv o výkonu funkce s platnými Zásadami.</span></li><li><span class="strategy-role-number" aria-hidden="true">14</span><span class="strategy-role-text">Hodnocení výkonů členů orgánů pomocí měřitelných ukazatelů a cílů.</span></li><li><span class="strategy-role-number" aria-hidden="true">15</span><span class="strategy-role-text">Zajištění transparentního a spravedlivého odměňování bez diskriminace.</span></li><li><span class="strategy-role-number" aria-hidden="true">16</span><span class="strategy-role-text">Zavedení a pravidelná aktualizace programů Compliance.</span></li><li><span class="strategy-role-number" aria-hidden="true">17</span><span class="strategy-role-text">Nastavení pravidelného poskytování informací vlastníkovi.</span></li><li><span class="strategy-role-number" aria-hidden="true">18</span><span class="strategy-role-text">Zveřejňování klíčových informací o strategických státních podnicích a společnostech s majetkovou účastí státu.</span></li><li><span class="strategy-role-number" aria-hidden="true">19</span><span class="strategy-role-text">Každoroční zpracování souhrnné zprávy o výsledcích a činnosti u strategických státních podniků a společnostech s majetkovou účastí státu.</span></li></ol></div>
+</section><section class="strategy-pillar-panel strategy-panel-red" id="strategy-pillar-panel-3" aria-labelledby="strategy-panel-title-3" tabindex="-1" hidden>
+<div class="strategy-panel-header"><div class="strategy-panel-identity"><span class="strategy-panel-number" aria-hidden="true">III.</span><div><h5 id="strategy-panel-title-3">Institucionální rámec</h5><p>2 role</p></div></div><button type="button" class="strategy-panel-back" data-pillar-back="3">← Zpět na pilíře</button></div>
+<div class="strategy-panel-scroll" tabindex="0" role="region" aria-labelledby="strategy-panel-title-3"><ol class="strategy-pillar-roles" start="20"><li><span class="strategy-role-number" aria-hidden="true">20</span><span class="strategy-role-text">Pravidelné vyhodnocování a optimalizování portfolia státních podniků a společností s majetkovou účastí státu.</span></li><li><span class="strategy-role-number" aria-hidden="true">21</span><span class="strategy-role-text">Posílení koordinace mezi ministerstvy prostřednictvím stálé meziresortní pracovní skupiny.</span></li></ol></div>
+</section></div></section>
+</main><script>
+(() => {
+ const section=document.querySelector('.strategy-pillars');
+ const buttons=[...section.querySelectorAll('button.strategy-pillar-summary')];
+ const panels=buttons.map(button=>document.getElementById(button.getAttribute('aria-controls')));
+ const reduced=window.matchMedia('(prefers-reduced-motion:reduce)');
+ let active=null;
+ function setActive(index){
+  active=index;
+  buttons.forEach((button,i)=>{
+   const selected=i===index;
+   button.setAttribute('aria-expanded',String(selected));
+   button.closest('.strategy-pillar').classList.toggle('is-open',selected);
+   panels[i].hidden=!selected;
+  });
+ }
+ function returnToPillars(){
+  const previous=active;
+  setActive(null);
+  if(previous!==null){
+   buttons[previous].focus({preventScroll:true});
+   buttons[previous].scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'center'});
+  }
+ }
+ buttons.forEach((button,i)=>button.addEventListener('click',()=>{
+  if(active===i){setActive(null);return}
+  setActive(i);
+  panels[i].focus({preventScroll:true});
+  panels[i].scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
+ }));
+ section.querySelectorAll('.strategy-panel-back').forEach(button=>button.addEventListener('click',returnToPillars));
+ section.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&active!==null){event.preventDefault();returnToPillars()}
+ });
+ setActive(null);
+})();
+</script></body></html>
